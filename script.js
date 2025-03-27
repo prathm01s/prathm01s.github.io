@@ -1,43 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.getElementById('loader');
-    const mainContent = document.getElementById('main-content');
-
-    // Simulate loading
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
-        mainContent.classList.remove('hidden');
-        mainContent.style.opacity = '1';
-    }, 3000);
-
-    // Smooth scrolling for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    // Locomotive Scroll for smooth scrolling
+    const scroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: true
     });
 
-    // Animate sections on scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    // GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
 
-    const animateOnScroll = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate__animated', 'animate__fadeIn');
-            }
-        });
-    };
+    // Preloader Animation
+    const preloader = document.getElementById('preloader');
+    gsap.to(preloader, {
+        opacity: 0,
+        duration: 1,
+        delay: 3,
+        display: 'none'
+    });
 
-    const observer = new IntersectionObserver(animateOnScroll, observerOptions);
+    // Parallax Effects
+    gsap.utils.toArray('.parallax-section').forEach((section, i) => {
+        const bg = section.querySelector('img');
+        if (bg) {
+            gsap.fromTo(bg, {
+                y: '-20%',
+                scale: 1.2
+            }, {
+                y: '20%',
+                scale: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
+    });
 
-    document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
+    // Glitch Text Effect
+    const glitchText = document.querySelector('.glitch');
+    function glitch() {
+        glitchText.style.textShadow = `
+            ${Math.random() * 10}px ${Math.random() * 10}px rgba(0, 255, 255, 0.5),
+            -${Math.random() * 10}px -${Math.random() * 5}px rgba(255, 0, 255, 0.5)
+        `;
+    }
+    setInterval(glitch, 100);
+
+    // Nav Scroll Effects
+    const nav = document.querySelector('.parallax-nav');
+    gsap.to(nav, {
+        backgroundColor: 'rgba(26, 26, 46, 0.9)',
+        backdropFilter: 'blur(15px)',
+        scrollTrigger: {
+            start: 'top top',
+            toggleActions: 'play none none reverse'
+        }
     });
 });

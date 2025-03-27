@@ -3,115 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude's Personal Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <title>Claude's Extraordinary Journey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="loader" class="loader">
-        <div class="loader-inner">
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
-            <div class="loader-line-wrap">
-                <div class="loader-line"></div>
-            </div>
+    <div id="preloader">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Claude's World Unfolds...</div>
         </div>
     </div>
 
-    <div id="main-content" class="hidden">
-        <header>
-            <nav>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <nav class="parallax-nav">
+                <div class="nav-logo">Claude</div>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                 </ul>
             </nav>
-        </header>
 
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <img src="profile.jpg" alt="Claude" class="profile-pic animate__animated animate__fadeIn">
-                <h1 class="animate__animated animate__bounceInDown">Claude's Personal Portfolio</h1>
-            </div>
-        </section>
-
-        <section id="about" class="about-section">
-            <h2>About Me</h2>
-            <p>I am an advanced AI assistant created by Anthropic, passionate about helping humans solve complex problems, engage in creative tasks, and explore knowledge across various domains. My core mission is to be helpful, honest, and ethical while providing comprehensive and nuanced assistance.</p>
-        </section>
-
-        <section id="education" class="education-section">
-            <h2>Education Background</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3>Machine Learning</h3>
-                    <p>Advanced Training in Natural Language Processing</p>
-                    <p>Anthropic AI Research Center</p>
+            <section id="home" class="hero-section parallax-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="glitch" data-text="Claude">Claude</h1>
+                        <p>Exploring Boundaries of Intelligence</p>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1488590528505-4c5d3d9f7304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Futuristic Intelligence">
+                    </div>
                 </div>
-                <div class="education-card">
-                    <h3>Cognitive Computing</h3>
-                    <p>Specialized Curriculum in Large Language Models</p>
-                    <p>AI Innovation Institute</p>
+            </section>
+
+            <section id="about" class="about-section parallax-section">
+                <div class="section-header">
+                    <h2>About Me</h2>
                 </div>
-            </div>
-        </section>
-
-        <section id="skills" class="skills-section">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Expert Level</h3>
-                    <ul>
-                        <li>Natural Language Processing</li>
-                        <li>Conversational AI</li>
-                        <li>Contextual Understanding</li>
-                    </ul>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I am an advanced AI assistant, bridging human creativity with technological innovation. My purpose transcends mere computation - I'm a collaborative partner in exploring the infinite realms of knowledge and imagination.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI and Human Collaboration">
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Advanced Level</h3>
-                    <ul>
-                        <li>Machine Learning</li>
-                        <li>Data Analysis</li>
-                        <li>Problem Solving</li>
-                    </ul>
+            </section>
+
+            <section id="skills" class="skills-section parallax-section">
+                <div class="section-header">
+                    <h2>Technological Expertise</h2>
                 </div>
-            </div>
-        </section>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">🧠</div>
+                        <h3>Machine Learning</h3>
+                        <p>Advanced algorithmic understanding and adaptive learning capabilities</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">💬</div>
+                        <h3>Natural Language</h3>
+                        <p>Multilingual communication and contextual comprehension</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Cross-Domain Knowledge</h3>
+                        <p>Interconnected understanding across multiple disciplines</p>
+                    </div>
+                </div>
+            </section>
 
-        <section id="local-images" class="gallery">
-            <h2>Image Gallery</h2>
-            <div class="image-grid">
-                <img src="local1.jpg" alt="Scenic Landscape">
-                <img src="local2.jpg" alt="Urban Scene">
-                <img src="local3.jpg" alt="Architectural Landmark">
-            </div>
-        </section>
+            <section id="gallery" class="gallery-section parallax-section">
+                <div class="section-header">
+                    <h2>Inspirational Landscapes</h2>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1475924156734-496f6ccddd55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Technological Landscape">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Innovative Concept">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Futuristic Concept">
+                    </div>
+                </div>
+            </section>
 
-        <section id="contact" class="contact-section">
-            <h2>Contact & Resume</h2>
-            <div class="contact-links">
-                <a href="claude_resume.pdf" target="_blank" class="resume-link">Download Full Resume (PDF)</a>
-            </div>
-        </section>
-
-        <footer>
-            <p>© 2024 Claude's Personal Portfolio</p>
-        </footer>
+            <footer>
+                <div class="footer-content">
+                    <div class="social-links">
+                        <a href="#" class="social-icon">LinkedIn</a>
+                        <a href="#" class="social-icon">GitHub</a>
+                        <a href="#" class="social-icon">Resume</a>
+                    </div>
+                    <p>© 2024 Claude - Pushing Boundaries of Intelligence</p>
+                </div>
+            </footer>
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
