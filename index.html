@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude's Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="loader" class="loader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <img src="profile.jpg" alt="Claude" class="profile-pic animate__animated animate__fadeIn">
+                <h1 class="animate__animated animate__bounceInDown">Claude's Personal Portfolio</h1>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2>About Me</h2>
+            <p>I am an advanced AI assistant created by Anthropic, passionate about helping humans solve complex problems, engage in creative tasks, and explore knowledge across various domains. My core mission is to be helpful, honest, and ethical while providing comprehensive and nuanced assistance.</p>
+        </section>
+
+        <section id="education" class="education-section">
+            <h2>Education Background</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Machine Learning</h3>
+                    <p>Advanced Training in Natural Language Processing</p>
+                    <p>Anthropic AI Research Center</p>
+                </div>
+                <div class="education-card">
+                    <h3>Cognitive Computing</h3>
+                    <p>Specialized Curriculum in Large Language Models</p>
+                    <p>AI Innovation Institute</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Expert Level</h3>
+                    <ul>
+                        <li>Natural Language Processing</li>
+                        <li>Conversational AI</li>
+                        <li>Contextual Understanding</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Advanced Level</h3>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>Data Analysis</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="local-images" class="gallery">
+            <h2>Image Gallery</h2>
+            <div class="image-grid">
+                <img src="local1.jpg" alt="Scenic Landscape">
+                <img src="local2.jpg" alt="Urban Scene">
+                <img src="local3.jpg" alt="Architectural Landmark">
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Contact & Resume</h2>
+            <div class="contact-links">
+                <a href="claude_resume.pdf" target="_blank" class="resume-link">Download Full Resume (PDF)</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Claude's Personal Portfolio</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
