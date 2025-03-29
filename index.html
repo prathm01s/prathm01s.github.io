@@ -5,110 +5,447 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude's Extraordinary Journey</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Enhanced Preloader -->
     <div id="preloader">
         <div class="loading-container">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Claude's World Unfolds...</div>
+            <div class="loading-landscape">
+                <div class="sun"></div>
+                <div class="mountains"></div>
+                <div class="hills"></div>
+                <div class="trees"></div>
+                <div class="water"></div>
+            </div>
+            <div class="loading-text">
+                <span>E</span><span>x</span><span>p</span><span>l</span><span>o</span><span>r</span><span>i</span><span>n</span><span>g</span>
+                <span>C</span><span>l</span><span>a</span><span>u</span><span>d</span><span>e</span><span>'</span><span>s</span>
+                <span>W</span><span>o</span><span>r</span><span>l</span><span>d</span><span>.</span><span>.</span><span>.</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
         </div>
     </div>
 
+    <!-- Cursor Animation -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <!-- Main Content -->
     <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" data-scroll-container>
+            <!-- Enhanced Navigation -->
             <nav class="parallax-nav">
-                <div class="nav-logo">Claude</div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
+                <div class="nav-logo">
+                    <span class="logo-text">Claude</span>
+                    <span class="logo-dot"></span>
+                </div>
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" data-scroll-to>Home</a></li>
+                    <li><a href="#about" data-scroll-to>About</a></li>
+                    <li><a href="#education" data-scroll-to>Education</a></li>
+                    <li><a href="#skills" data-scroll-to>Skills</a></li>
+                    <li><a href="#gallery" data-scroll-to>Gallery</a></li>
+                    <li><a href="#contact" data-scroll-to>Contact</a></li>
                 </ul>
             </nav>
 
+            <!-- Hero Section -->
             <section id="home" class="hero-section parallax-section">
+                <div class="hero-bg-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
                 <div class="hero-content">
-                    <div class="hero-text">
+                    <div class="hero-text" data-scroll data-scroll-speed="1">
                         <h1 class="glitch" data-text="Claude">Claude</h1>
-                        <p>Exploring Boundaries of Intelligence</p>
+                        <div class="typewriter">
+                            <p id="typewriter-text"></p>
+                        </div>
+                        <div class="hero-cta">
+                            <a href="#about" class="btn primary-btn">About Me</a>
+                            <a href="assets/Claude_Resume.pdf" class="btn secondary-btn" download>Download CV <i class="fas fa-download"></i></a>
+                        </div>
                     </div>
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1488590528505-4c5d3d9f7304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Futuristic Intelligence">
+                    <div class="hero-image" data-scroll data-scroll-speed="-1">
+                        <div class="profile-frame">
+                            <img src="/api/placeholder/400/400" alt="Claude Profile Picture" class="profile-pic">
+                            <div class="frame-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <div class="arrow">
+                        <span></span>
+                        <span></span>
                     </div>
                 </div>
             </section>
 
+            <!-- About Section -->
             <section id="about" class="about-section parallax-section">
-                <div class="section-header">
-                    <h2>About Me</h2>
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="section-underline"></div>
                 </div>
                 <div class="about-content">
-                    <div class="about-text">
-                        <p>I am an advanced AI assistant, bridging human creativity with technological innovation. My purpose transcends mere computation - I'm a collaborative partner in exploring the infinite realms of knowledge and imagination.</p>
+                    <div class="about-image" data-scroll data-scroll-speed="-0.5">
+                        <div class="image-stack">
+                            <img src="/api/placeholder/500/300" alt="My Birthplace Landscape" class="stack-img img-back">
+                            <img src="/api/placeholder/500/300" alt="My Birthplace Scenery" class="stack-img img-middle">
+                            <img src="/api/placeholder/500/300" alt="Local Culture" class="stack-img img-front">
+                        </div>
                     </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI and Human Collaboration">
+                    <div class="about-text" data-scroll data-scroll-speed="0.5">
+                        <div class="bio-card">
+                            <div class="bio-header">
+                                <div class="bio-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <h3>Personal Bio</h3>
+                            </div>
+                            <p>I am an innovative problem solver with a passion for creating intelligent solutions that bridge human creativity with technological innovation. Originally from the scenic mountains of the Pacific Northwest, I've always been captivated by the intersection of nature's complexity and computational elegance. My journey in technology began when I built my first computer at age 12, sparking a lifelong curiosity about how systems process information.</p>
+                            <p>When I'm not coding or exploring new tech, you'll find me hiking mountain trails, experimenting with landscape photography, and volunteering at local STEM education programs. I believe in technology that enhances human capabilities while remaining accessible and ethical.</p>
+                            <div class="bio-stats">
+                                <div class="stat">
+                                    <span class="stat-number">5+</span>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">20+</span>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">10+</span>
+                                    <span class="stat-label">Happy Clients</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Education Section -->
+            <section id="education" class="education-section parallax-section">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <h2 class="section-title">Education & Achievements</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="education-timeline" data-scroll data-scroll-speed="0.5">
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2019 - 2023</div>
+                                <h3>Master of Science in Artificial Intelligence</h3>
+                                <h4>Stanford University</h4>
+                                <p>Specialized in natural language processing and machine learning algorithms. Graduated with honors and published research on conversational AI systems.</p>
+                                <div class="achievement">
+                                    <i class="fas fa-award"></i>
+                                    <span>Dean's List - All Semesters</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2015 - 2019</div>
+                                <h3>Bachelor of Science in Computer Science</h3>
+                                <h4>Massachusetts Institute of Technology</h4>
+                                <p>Focused on computational theory and software engineering. Led the university's AI research group in my senior year.</p>
+                                <div class="achievement">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>1st Place - National Coding Competition</span>
+                                </div>
+                                <div class="achievement">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Undergraduate Research Excellence Award</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2011 - 2015</div>
+                                <h3>High School Diploma</h3>
+                                <h4>Westlake Academy</h4>
+                                <p>Graduated as valedictorian with focus on STEM subjects. Founded the school's first robotics club.</p>
+                                <div class="achievement">
+                                    <i class="fas fa-medal"></i>
+                                    <span>Science Olympiad State Champion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
             <section id="skills" class="skills-section parallax-section">
-                <div class="section-header">
-                    <h2>Technological Expertise</h2>
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <div class="section-underline"></div>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">🧠</div>
-                        <h3>Machine Learning</h3>
-                        <p>Advanced algorithmic understanding and adaptive learning capabilities</p>
+                <div class="skills-content">
+                    <div class="skills-intro" data-scroll data-scroll-speed="0.5">
+                        <p>I specialize in cutting-edge technologies with a focus on creating intelligent, scalable solutions. My expertise spans multiple domains, allowing me to approach problems with a comprehensive perspective.</p>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">💬</div>
-                        <h3>Natural Language</h3>
-                        <p>Multilingual communication and contextual comprehension</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🌐</div>
-                        <h3>Cross-Domain Knowledge</h3>
-                        <p>Interconnected understanding across multiple disciplines</p>
+                    <div class="skills-grid" data-scroll data-scroll-speed="0.3">
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                                <h3>Machine Learning</h3>
+                            </div>
+                            <p>Advanced algorithmic understanding and adaptive learning capabilities</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%;"></div>
+                                </div>
+                                <span>Expert</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-comment-dots"></i></div>
+                                <h3>Natural Language</h3>
+                            </div>
+                            <p>Multilingual communication and contextual comprehension</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%;"></div>
+                                </div>
+                                <span>Expert</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                                <h3>Full-Stack Development</h3>
+                            </div>
+                            <p>Building comprehensive software solutions from front to back</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%;"></div>
+                                </div>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                                <h3>Data Engineering</h3>
+                            </div>
+                            <p>Creating efficient data pipelines and analytics systems</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%;"></div>
+                                </div>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                                <h3>Cloud Architecture</h3>
+                            </div>
+                            <p>Designing scalable and resilient cloud infrastructure</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%;"></div>
+                                </div>
+                                <span>Proficient</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                                <h3>Robotics</h3>
+                            </div>
+                            <p>Programming autonomous systems and mechanical interfaces</p>
+                            <div class="skill-level">
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%;"></div>
+                                </div>
+                                <span>Proficient</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Gallery Section -->
             <section id="gallery" class="gallery-section parallax-section">
-                <div class="section-header">
-                    <h2>Inspirational Landscapes</h2>
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <h2 class="section-title">My Birthplace</h2>
+                    <div class="section-underline"></div>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1475924156734-496f6ccddd55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Technological Landscape">
+                <div class="gallery-intro" data-scroll data-scroll-speed="0.5">
+                    <p>Growing up in the majestic landscapes of the Pacific Northwest has profoundly shaped my perspective and approach to problem-solving. These images capture the natural beauty that inspires my creative thinking.</p>
+                </div>
+                <div class="gallery-grid" data-scroll data-scroll-speed="0.3">
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="Mountain Range">
+                            <div class="gallery-overlay">
+                                <h3>Mountain Range</h3>
+                                <p>The peaks that defined my childhood skyline</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Innovative Concept">
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="Forest Trail">
+                            <div class="gallery-overlay">
+                                <h3>Forest Trails</h3>
+                                <p>Where I discovered my love for exploration</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Futuristic Concept">
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="Local Lake">
+                            <div class="gallery-overlay">
+                                <h3>Crystal Lake</h3>
+                                <p>Reflection mirrors my analytical thinking</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="City View">
+                            <div class="gallery-overlay">
+                                <h3>Downtown</h3>
+                                <p>Where technology meets community</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="Sunset View">
+                            <div class="gallery-overlay">
+                                <h3>Coastal Sunset</h3>
+                                <p>Reminder of nature's complex beauty</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-tilt>
+                        <div class="gallery-image">
+                            <img src="/api/placeholder/400/300" alt="Local Market">
+                            <div class="gallery-overlay">
+                                <h3>Farmers Market</h3>
+                                <p>Cultural hub of innovation and community</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section parallax-section">
+                <div class="section-header" data-scroll data-scroll-speed="1">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info" data-scroll data-scroll-speed="0.5">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email</h3>
+                            <p>claude@example.com</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Location</h3>
+                            <p>San Francisco, CA</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Phone</h3>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-form" data-scroll data-scroll-speed="0.5">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
             <footer>
                 <div class="footer-content">
-                    <div class="social-links">
-                        <a href="#" class="social-icon">LinkedIn</a>
-                        <a href="#" class="social-icon">GitHub</a>
-                        <a href="#" class="social-icon">Resume</a>
+                    <div class="footer-logo">
+                        <span class="logo-text">Claude</span>
+                        <span class="logo-dot"></span>
                     </div>
-                    <p>© 2024 Claude - Pushing Boundaries of Intelligence</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#education">Education</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <p class="copyright">© 2025 Claude - Pushing Boundaries of Intelligence</p>
                 </div>
             </footer>
         </div>
     </div>
 
+    <!-- Scroll To Top Button -->
+    <button id="scrollToTop" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.7.4/smooth-scrollbar.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
