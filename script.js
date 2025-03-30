@@ -59,3 +59,76 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Enhanced Preloader Animation
+function createParticles() {
+    const particles = 50;
+    for(let i = 0; i < particles; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.width = particle.style.height = Math.random() * 3 + 'px';
+      particle.style.animation = `particleFloat ${Math.random() * 3 + 2}s linear infinite`;
+      document.getElementById('preloader').appendChild(particle);
+    }
+  }
+  
+  // Holographic Header Effect
+  function createHeaderEffect() {
+    const header = document.querySelector('.parallax-nav');
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      header.style.background = `linear-gradient(${x * 360}deg, rgba(26,26,46,0.9) 0%, rgba(43,192,228,${y * 0.2}) 100%)`;
+    });
+  }
+  
+  // Initialize Enhanced Effects
+  document.addEventListener('DOMContentLoaded', () => {
+    createParticles();
+    createHeaderEffect();
+    
+    // Matrix-like Loading Text
+    const loadingText = document.querySelector('.loading-text');
+    Array.from(loadingText.children).forEach((span, i) => {
+      gsap.to(span, {
+        delay: i * 0.1,
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power4.out'
+      });
+    });
+  
+    // Interactive Cursor Effects
+    document.addEventListener('mousemove', (e) => {
+      const cursorInner = document.querySelector('.cursor-inner');
+      const cursorOuter = document.querySelector('.cursor-outer');
+      
+      gsap.to(cursorInner, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1
+      });
+      
+      gsap.to(cursorOuter, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3
+      });
+    });
+  
+    // Hover Effects
+    document.querySelectorAll('a, button').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        document.querySelector('.cursor-outer').classList.add('cursor-hover');
+        document.querySelector('.cursor-inner').classList.add('cursor-inner-hover');
+      });
+      element.addEventListener('mouseleave', () => {
+        document.querySelector('.cursor-outer').classList.remove('cursor-hover');
+        document.querySelector('.cursor-inner').classList.remove('cursor-inner-hover');
+      });
+    });
+  });
+
+  

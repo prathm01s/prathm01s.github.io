@@ -1742,3 +1742,183 @@ footer {
         scroll-behavior: auto !important;
     }
 }
+
+/* === Sci-Fi Loading Screen === */
+#preloader {
+    background: #000;
+  }
+  
+  .loading-container {
+    perspective: 1000px;
+  }
+  
+  .neon-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(0deg, rgba(11,85,148,0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,85,148,0.2) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: gridMove 20s linear infinite;
+  }
+  
+  .holo-cube {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    animation: cubeRotate 8s infinite linear;
+  }
+  
+  .holo-cube div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(43,192,228,0.1);
+    border: 2px solid #2bc0e4;
+    box-shadow: 0 0 30px rgba(43,192,228,0.3);
+  }
+  
+  .holo-cube .front { transform: translateZ(50px); }
+  .holo-cube .back { transform: translateZ(-50px); }
+  .holo-cube .right { transform: rotateY(90deg) translateZ(50px); }
+  .holo-cube .left { transform: rotateY(-90deg) translateZ(50px); }
+  .holo-cube .top { transform: rotateX(90deg) translateZ(50px); }
+  .holo-cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+  
+  .neon-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #2bc0e4 0%, #4b6cb7 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(20px);
+    animation: corePulse 2s ease-in-out infinite;
+  }
+  
+  .digital-loading {
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px #2bc0e4;
+    position: relative;
+  }
+  
+  .digital-loading::after {
+    content: '▋';
+    animation: cursorBlink 1s infinite;
+  }
+  
+  .particle {
+    position: absolute;
+    background: #2bc0e4;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  /* === Enhanced Header === */
+  .parallax-nav {
+    background: linear-gradient(90deg, rgba(26,26,46,0.9) 0%, rgba(43,192,228,0.1) 100%) !important;
+    border-bottom: 1px solid rgba(75,108,183,0.3);
+  }
+  
+  .nav-links li a {
+    position: relative;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    background: rgba(75,108,183,0.2);
+    border-radius: 5px;
+  }
+  
+  .nav-links li a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-gradient);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-links li a:hover::before {
+    transform: scaleX(1);
+  }
+  
+  /* === Holographic Footer === */
+  footer {
+    background: linear-gradient(45deg, #1a1a2e 0%, #0f0f23 100%);
+    border-top: 1px solid rgba(75,108,183,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 0%, rgba(75,108,183,0.1) 50%, transparent 100%);
+    animation: footerScan 6s linear infinite;
+  }
+  
+  .social-icon {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(43,192,228,0.2);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  .social-icon:hover::before {
+    transform: scale(1.5);
+  }
+  
+  /* === New Animations === */
+  @keyframes cubeRotate {
+    0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+    100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+  }
+  
+  @keyframes corePulse {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  }
+  
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 300px 300px; }
+  }
+  
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  @keyframes footerScan {
+    0% { transform: rotate(45deg) translate(-50%, -50%); }
+    100% { transform: rotate(45deg) translate(50%, 50%); }
+  }
+  
+  @keyframes particleFloat {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+  }
