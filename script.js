@@ -1,282 +1,266 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Preloader Animation - Make sure this runs regardless of other errors
+  // Preloader Animation
   const preloader = document.getElementById('preloader');
   gsap.to(preloader, {
-    opacity: 0,
-    duration: 1,
-    delay: 3,
-    onComplete: () => {
-        preloader.style.display = 'none';
-    }
-  });
-
-  // GSAP ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Parallax Effects
-  gsap.utils.toArray('.parallax-section').forEach((section, i) => {
-      const bg = section.querySelector('img');
-      if (bg) {
-          gsap.fromTo(bg, {
-              y: '-20%',
-              scale: 1.2
-          }, {
-              y: '20%',
-              scale: 1,
-              ease: 'none',
-              scrollTrigger: {
-                  trigger: section,
-                  start: 'top bottom',
-                  end: 'bottom top',
-                  scrub: true
-              }
-          });
+      opacity: 0,
+      duration: 1,
+      delay: 3,
+      onComplete: () => {
+          preloader.style.display = 'none';
       }
   });
 
-  // Glitch Text Effect
-  const glitchText = document.querySelector('.glitch');
-  if (glitchText) {
-      function glitch() {
-          glitchText.style.textShadow = `
-              ${Math.random() * 10}px ${Math.random() * 10}px rgba(0, 255, 255, 0.5),
-              -${Math.random() * 10}px -${Math.random() * 5}px rgba(255, 0, 255, 0.5)
-          `;
-      }
-      setInterval(glitch, 100);
-  }
-
-  // Nav Scroll Effects
-  const nav = document.querySelector('.parallax-nav');
-  if (nav) {
-      gsap.to(nav, {
-          backgroundColor: 'rgba(26, 26, 46, 0.9)',
-          backdropFilter: 'blur(15px)',
-          scrollTrigger: {
-              start: 'top top',
-              toggleActions: 'play none none reverse'
-          }
-      });
-  }
-  
-  // Initialize other effects
-  createParticles();
-  createHeaderEffect();
-  initLoadingText();
-  
-  // Progress bar animation for preloader
-  const progressBar = document.querySelector('.progress');
-  if (progressBar) {
-      gsap.to(progressBar, {
-          width: '100%',
-          duration: 2.5,
-          ease: 'power1.inOut'
-      });
-  }
-
-  // Initialize typewriter effect
+  // Initialize Typewriter
   initTypewriter();
-  
-  // Setup scroll to top button
-  setupScrollToTop();
-  
-  // Fix cursor visibility issue by applying proper z-index and ensuring initial position
-  fixCursorVisibility();
+
+  // Initialize Event Tracking
+  initEventTracking();
+
+  // Initialize Text Analysis
+  initTextAnalysis();
+
+  // Smooth Scroll for Navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+      });
+  });
+
+  // Animate Loading Text
+  const loadingText = document.querySelector('.digital-loading');
+  if (loadingText) {
+      Array.from(loadingText.children).forEach((span, i) => {
+          gsap.to(span, {
+              delay: i * 0.1,
+              opacity: 1,
+              y: 0,
+              duration: 0.5
+          });
+      });
+  }
 });
 
-// Fix for cursor visibility
-function fixCursorVisibility() {
-  const cursorInner = document.querySelector('.cursor-inner');
-  const cursorOuter = document.querySelector('.cursor-outer');
-  
-  if (cursorInner && cursorOuter) {
-      // Set initial position to prevent cursor from being in the top-left corner
-      cursorInner.style.top = '50%';
-      cursorInner.style.left = '50%';
-      cursorOuter.style.top = '50%';
-      cursorOuter.style.left = '50%';
-      
-      // Ensure high z-index
-      cursorInner.style.zIndex = '9999';
-      cursorOuter.style.zIndex = '9998';
-      
-      // Make cursor visible
-      cursorInner.style.opacity = '1';
-      cursorOuter.style.opacity = '1';
-      
-      // Add event listener for mouse movement
-      document.addEventListener('mousemove', (e) => {
-          gsap.to(cursorInner, {
-              x: e.clientX,
-              y: e.clientY,
-              duration: 0.1
-          });
-          
-          gsap.to(cursorOuter, {
-              x: e.clientX,
-              y: e.clientY,
-              duration: 0.3
-          });
-      });
-  
-      // Hover Effects
-      document.querySelectorAll('a, button').forEach(element => {
-          element.addEventListener('mouseenter', () => {
-              cursorOuter.classList.add('cursor-hover');
-              cursorInner.classList.add('cursor-inner-hover');
-          });
-          element.addEventListener('mouseleave', () => {
-              cursorOuter.classList.remove('cursor-hover');
-              cursorInner.classList.remove('cursor-inner-hover');
-          });
-      });
-  }
-}
-
-// Enhanced Preloader Animation
-function createParticles() {
-  const particles = 50;
-  const preloader = document.getElementById('preloader');
-  if (!preloader) return;
-  
-  for(let i = 0; i < particles; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.width = particle.style.height = Math.random() * 3 + 'px';
-      particle.style.animation = `particleFloat ${Math.random() * 3 + 2}s linear infinite`;
-      preloader.appendChild(particle);
-  }
-}
-
-// Holographic Header Effect
-function createHeaderEffect() {
-  const header = document.querySelector('.parallax-nav');
-  if (!header) return;
-  
-  document.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      header.style.background = `linear-gradient(${x * 360}deg, rgba(26,26,46,0.9) 0%, rgba(43,192,228,${y * 0.2}) 100%)`;
-  });
-}
-
-// Matrix-like Loading Text
-function initLoadingText() {
-  const loadingText = document.querySelector('.loading-text');
-  if (!loadingText) return;
-  
-  Array.from(loadingText.children).forEach((span, i) => {
-      gsap.to(span, {
-          delay: i * 0.1,
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: 'power4.out'
-      });
-  });
-}
-
-// Initialize Typewriter effect
+// Typewriter Effect
 function initTypewriter() {
   const typewriterText = document.getElementById('typewriter-text');
   if (!typewriterText) return;
-  
-  const texts = [
-      "AI Language Specialist",
-      "Full-Stack Developer",
-      "Problem Solver",
-      "Creative Thinker"
-  ];
-  
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  
+  const texts = ["AI Language Specialist", "Full-Stack Developer", "Problem Solver"];
+  let textIndex = 0, charIndex = 0, isDeleting = false;
+
   function type() {
       const currentText = texts[textIndex];
-      
-      if (isDeleting) {
-          typewriterText.textContent = currentText.substring(0, charIndex - 1);
-          charIndex--;
-      } else {
-          typewriterText.textContent = currentText.substring(0, charIndex + 1);
-          charIndex++;
-      }
-      
-      // Speed for typing and deleting
+      typewriterText.textContent = isDeleting
+          ? currentText.substring(0, charIndex - 1)
+          : currentText.substring(0, charIndex + 1);
+      charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
+
       let typeSpeed = isDeleting ? 50 : 150;
-      
-      // If complete word, pause then start deleting
       if (!isDeleting && charIndex === currentText.length) {
-          typeSpeed = 1500; // Pause at end of word
+          typeSpeed = 1500;
           isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
           isDeleting = false;
           textIndex = (textIndex + 1) % texts.length;
-          typeSpeed = 500; // Pause before typing next word
+          typeSpeed = 500;
       }
-      
+
       setTimeout(type, typeSpeed);
   }
-  
-  // Start the typewriter effect
+
   setTimeout(type, 1000);
 }
 
-// Setup scroll to top button
-function setupScrollToTop() {
-  const scrollToTopBtn = document.getElementById('scrollToTop');
-  if (!scrollToTopBtn) return;
-  
-  window.addEventListener('scroll', () => {
-      if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-          scrollToTopBtn.style.display = 'block';
-          scrollToTopBtn.style.opacity = '1';
-      } else {
-          scrollToTopBtn.style.opacity = '0';
-          setTimeout(() => {
-              if (document.body.scrollTop <= 500 && document.documentElement.scrollTop <= 500) {
-                  scrollToTopBtn.style.display = 'none';
-              }
-          }, 300);
-      }
+// Event Tracking (Q2)
+function initEventTracking() {
+  // Page View
+  logEvent('view', 'page', document.title);
+
+  // Click Events
+  document.addEventListener('click', (e) => {
+      const target = e.target;
+      let elementType = getElementType(target);
+      let elementContent = getElementContent(target);
+      logEvent('click', elementType, elementContent);
   });
-  
-  scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+
+  // Section Views
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              logEvent('view', 'section', entry.target.id || 'unknown-section');
+          }
       });
+  }, { threshold: 0.5 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Specific Elements
+  trackSpecificElements();
+}
+
+function trackSpecificElements() {
+  // Profile Picture
+  const profilePic = document.querySelector('.profile-pic');
+  if (profilePic) trackElementView(profilePic, 'image', 'Profile Picture');
+
+  // Birthplace Images
+  document.querySelectorAll('#gallery img').forEach((img, index) => {
+      trackElementView(img, 'image', `Birthplace Image ${index + 1}`);
+  });
+
+  // About Paragraphs
+  document.querySelectorAll('#about p').forEach((p, index) => {
+      trackElementView(p, 'text', `About Paragraph ${index + 1}`);
+  });
+
+  // Education Items
+  document.querySelectorAll('#education .timeline-item').forEach((item, index) => {
+      trackElementView(item, 'text', `Education Item ${index + 1}`);
+  });
+
+  // Skills
+  document.querySelectorAll('#skills .skill-card').forEach((card, index) => {
+      trackElementView(card, 'text', `Skill Card ${index + 1}`);
+  });
+
+  // CV Download
+  const cvLink = document.querySelector('a[href*="Claude_Resume.pdf"]');
+  if (cvLink) {
+      cvLink.addEventListener('click', () => {
+          logEvent('click', 'hyperlink', 'CV Download');
+      });
+  }
+}
+
+function trackElementView(element, type, content) {
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              logEvent('view', type, content);
+              observer.unobserve(element);
+          }
+      });
+  }, { threshold: 0.7 });
+  observer.observe(element);
+}
+
+function getElementType(element) {
+  if (!element) return 'unknown';
+  const tagName = element.tagName.toLowerCase();
+  if (tagName === 'a') return 'hyperlink';
+  if (tagName === 'button') return 'button';
+  if (tagName === 'img') return 'image';
+  if (tagName === 'input') {
+      const type = element.getAttribute('type');
+      if (type === 'submit') return 'button';
+      return 'input-field';
+  }
+  if (tagName === 'textarea') return 'text-area';
+  if (element.closest('p')) return 'text';
+  if (element.classList.contains('skill-card')) return 'skill-card';
+  if (element.closest('.timeline-item')) return 'education-item';
+  return tagName;
+}
+
+function getElementContent(element) {
+  let content = element.textContent?.trim();
+  if (!content && element.tagName.toLowerCase() === 'img') content = element.alt;
+  if (!content && element.tagName.toLowerCase() === 'input') content = element.placeholder || element.id;
+  if (!content && element.tagName.toLowerCase() === 'a') content = element.href;
+  if (!content) content = `${getElementType(element)} element`;
+  return content.length > 50 ? content.substring(0, 47) + '...' : content;
+}
+
+function logEvent(eventType, objectType, objectContent) {
+  const timestamp = new Date().toISOString();
+  console.log(`${timestamp}, ${eventType}, ${objectType}: ${objectContent}`);
+}
+
+// Text Analysis (Q3)
+function initTextAnalysis() {
+  const analyzeBtn = document.getElementById('analyze-text');
+  const textInput = document.getElementById('text-input');
+  const resultsDiv = document.getElementById('analysis-results');
+
+  if (!analyzeBtn || !textInput || !resultsDiv) return;
+
+  analyzeBtn.addEventListener('click', () => {
+      const text = textInput.value;
+      if (!text) {
+          resultsDiv.innerHTML = '<p>Please enter some text to analyze.</p>';
+          return;
+      }
+
+      // Basic Stats
+      const stats = calculateTextStats(text);
+      const pronounCounts = countPronouns(text);
+      const prepositionCounts = countPrepositions(text);
+      const articleCounts = countArticles(text);
+
+      // Display Results
+      resultsDiv.innerHTML = `
+          <h3>Text Statistics</h3>
+          <p>Letters: ${stats.letters}</p>
+          <p>Words: ${stats.words}</p>
+          <p>Spaces: ${stats.spaces}</p>
+          <p>Newlines: ${stats.newlines}</p>
+          <p>Special Symbols: ${stats.specialSymbols}</p>
+          <h3>Pronouns</h3>
+          <pre>${JSON.stringify(pronounCounts, null, 2)}</pre>
+          <h3>Prepositions</h3>
+          <pre>${JSON.stringify(prepositionCounts, null, 2)}</pre>
+          <h3>Indefinite Articles</h3>
+          <pre>${JSON.stringify(articleCounts, null, 2)}</pre>
+      `;
   });
 }
 
-// Set up smooth scrolling for navigation links without locomotive scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-          window.scrollTo({
-              top: targetElement.offsetTop,
-              behavior: 'smooth'
-          });
-      }
-  });
-});
+function calculateTextStats(text) {
+  const letters = text.match(/[a-zA-Z]/g)?.length || 0;
+  const words = text.split(/\s+/).filter(word => word).length;
+  const spaces = text.match(/\s/g)?.length || 0;
+  const newlines = text.match(/\n/g)?.length || 0;
+  const specialSymbols = text.match(/[^a-zA-Z0-9\s]/g)?.length || 0;
 
-// Initialize Vanilla Tilt
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof VanillaTilt !== 'undefined') {
-      VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-          max: 15,
-          speed: 400,
-          glare: true,
-          "max-glare": 0.3
-      });
-  }
-});
+  return { letters, words, spaces, newlines, specialSymbols };
+}
+
+function countPronouns(text) {
+  const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them'];
+  const words = text.toLowerCase().split(/\s+/).filter(word => word);
+  const counts = {};
+
+  pronouns.forEach(pronoun => {
+      counts[pronoun] = words.filter(word => word === pronoun).length;
+  });
+
+  return counts;
+}
+
+function countPrepositions(text) {
+  const prepositions = ['of', 'in', 'to', 'for', 'with', 'on', 'at', 'from', 'by', 'about', 'as', 'into', 'like'];
+  const words = text.toLowerCase().split(/\s+/).filter(word => word);
+  const counts = {};
+
+  prepositions.forEach(prep => {
+      counts[prep] = words.filter(word => word === prep).length;
+  });
+
+  return counts;
+}
+
+function countArticles(text) {
+  const articles = ['a', 'an'];
+  const words = text.toLowerCase().split(/\s+/).filter(word => word);
+  const counts = {};
+
+  articles.forEach(article => {
+      counts[article] = words.filter(word => word === article).length;
+  });
+
+  return counts;
+}
