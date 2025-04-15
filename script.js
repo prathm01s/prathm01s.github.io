@@ -11,11 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Preloader Animation
     const preloader = document.getElementById('preloader');
     gsap.to(preloader, {
-        opacity: 0,
-        duration: 1,
-        delay: 3,
-        display: 'none'
+      opacity: 0,
+      duration: 1,
+      delay: 3,
+      onComplete: () => {
+          preloader.style.display = 'none';
+      }
     });
+  
 
     // Parallax Effects
     gsap.utils.toArray('.parallax-section').forEach((section, i) => {
