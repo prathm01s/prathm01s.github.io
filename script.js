@@ -106,7 +106,7 @@ function initTypewriter() {
   setTimeout(type, 1000);
 }
 
-// Event Tracking (Q2)
+// Event Tracking
 function initEventTracking() {
   // Page View
   logEvent('view', 'page', document.title);
@@ -114,9 +114,14 @@ function initEventTracking() {
   // Click Events
   document.addEventListener('click', (e) => {
       const target = e.target;
-      let elementType = getElementType(target);
-      let elementContent = getElementContent(target);
-      logEvent('click', elementType, elementContent);
+      // Check if the clicked element is an image
+      if (target.tagName.toLowerCase() === 'img') {
+          logEvent('click', 'image', 'picture');
+      } else {
+          let elementType = getElementType(target);
+          let elementContent = getElementContent(target);
+          logEvent('click', elementType, elementContent);
+      }
   });
 
   // Section Views
@@ -242,7 +247,7 @@ function logEvent(eventType, objectType, objectContent) {
   console.log(`${timestamp}, ${eventType}, ${objectType}: ${objectContent}`);
 }
 
-// Text Analysis (Q3)
+// Text Analysis
 function initTextAnalysis() {
   const analyzeBtn = document.getElementById('analyze-text');
   const textInput = document.getElementById('text-input');
