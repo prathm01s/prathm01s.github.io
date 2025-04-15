@@ -181,7 +181,7 @@ function trackAllElements() {
   });
 
   // CV Download
-  const cvLink = document.querySelector('a[href*="Claude_Resume.pdf"]');
+  const cvLink = document.querySelector('a[href*="resume.pdf"]');
   if (cvLink) {
       cvLink.addEventListener('click', () => {
           logEvent('click', 'hyperlink', 'CV Download');
