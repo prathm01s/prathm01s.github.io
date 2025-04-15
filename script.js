@@ -263,6 +263,17 @@ function initTextAnalysis() {
       const prepositionCounts = countPrepositions(text);
       const articleCounts = countArticles(text);
 
+      // Filter non-zero counts
+      const nonZeroPronouns = Object.fromEntries(
+          Object.entries(pronounCounts).filter(([_, count]) => count > 0)
+      );
+      const nonZeroPrepositions = Object.fromEntries(
+          Object.entries(prepositionCounts).filter(([_, count]) => count > 0)
+      );
+      const nonZeroArticles = Object.fromEntries(
+          Object.entries(articleCounts).filter(([_, count]) => count > 0)
+      );
+
       // Display Results
       resultsDiv.innerHTML = `
           <h3>Text Statistics</h3>
@@ -271,12 +282,24 @@ function initTextAnalysis() {
           <p>Spaces: ${stats.spaces}</p>
           <p>Newlines: ${stats.newlines}</p>
           <p>Special Symbols: ${stats.specialSymbols}</p>
-          <h3>Pronouns</h3>
-          <pre>${JSON.stringify(pronounCounts, null, 2)}</pre>
-          <h3>Prepositions</h3>
-          <pre>${JSON.stringify(prepositionCounts, null, 2)}</pre>
-          <h3>Indefinite Articles</h3>
-          <pre>${JSON.stringify(articleCounts, null, 2)}</pre>
+          <h3>Pronouns (Non-Zero Counts)</h3>
+          <pre>${
+              Object.keys(nonZeroPronouns).length > 0
+                  ? JSON.stringify(nonZeroPronouns, null, 2)
+                  : 'No pronouns found.'
+          }</pre>
+          <h3>Prepositions (Non-Zero Counts)</h3>
+          <pre>${
+              Object.keys(nonZeroPrepositions).length > 0
+                  ? JSON.stringify(nonZeroPrepositions, null, 2)
+                  : 'No prepositions found.'
+          }</pre>
+          <h3>Indefinite Articles (Non-Zero Counts)</h3>
+          <pre>${
+              Object.keys(nonZeroArticles).length > 0
+                  ? JSON.stringify(nonZeroArticles, null, 2)
+                  : 'No indefinite articles found.'
+          }</pre>
       `;
   });
 }
