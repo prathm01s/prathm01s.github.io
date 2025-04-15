@@ -30,4 +30,4 @@ const prepositions = [
     'together with', 'up against', 'with reference to'
 ];
 
-Special symbols are still counted as any character matching [^a-zA-Z0-9\s]
+Special symbols are counted as any character matching the following regex: /[^a-zA-Z0-9\s]/g
