@@ -161,6 +161,44 @@ img {
     box-shadow: 0 0 20px rgba(43,192,228,0.3);
 }
 
+.profile-photo-container {
+    position: relative;
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    padding: 10px;
+    background: radial-gradient(circle, rgba(43,192,228,0.2), transparent);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.profile-photo-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(43,192,228,0.6);
+}
+
+.profile-photo-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(43,192,228,0.3),
+        transparent
+    );
+    animation: scan 4s linear infinite;
+    z-index: 1;
+}
+
+.profile-photo-container img {
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+}
+
 /* About Section */
 .image-stack {
     position: relative;
@@ -379,6 +417,11 @@ footer {
 
 @keyframes blink-caret {
     50% { border-color: transparent; }
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%) rotate(45deg); }
+    100% { transform: translateY(100%) rotate(45deg); }
 }
 
 /* Responsive Adjustments */
