@@ -1,3 +1,36 @@
+// Pronouns and Prepositions from readme.txt
+const pronouns = [
+  'all', 'another', 'any', 'anybody', 'anyone', 'anything', 'as', 'aught', 'both', 'each',
+  'each other', 'either', 'everybody', 'everyone', 'everything', 'few', 'he', 'her', 'hers',
+  'herself', 'him', 'himself', 'his', 'i', 'it', 'its', 'itself', 'many', 'me', 'mine',
+  'most', 'my', 'myself', 'naught', 'neither', 'no one', 'nobody', 'none', 'nothing',
+  'one', 'one another', 'other', 'others', 'ought', 'our', 'ours', 'ourselves', 'several',
+  'she', 'some', 'somebody', 'someone', 'something', 'such', 'that', 'their', 'theirs',
+  'them', 'themselves', 'these', 'they', 'this', 'those', 'thou', 'thee', 'thy', 'thine',
+  'us', 'we', 'what', 'whatever', 'which', 'whichever', 'who', 'whoever', 'whom',
+  'whomever', 'whose', 'ye', 'you', 'your', 'yours', 'yourself', 'yourselves'
+];
+
+const prepositions = [
+  'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among',
+  'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'between',
+  'beyond', 'but', 'by', 'concerning', 'considering', 'despite', 'down', 'during',
+  'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of',
+  'off', 'on', 'onto', 'opposite', 'outside', 'over', 'past', 'per', 'plus', 'regarding',
+  'round', 'since', 'than', 'through', 'to', 'toward', 'towards', 'under', 'underneath',
+  'unlike', 'until', 'up', 'upon', 'versus', 'via', 'with', 'within', 'without',
+  'according to', 'ahead of', 'apart from', 'as for', 'as of', 'as per', 'as regards',
+  'aside from', 'back to', 'because of', 'close to', 'due to', 'except for', 'far from',
+  'in addition to', 'in front of', 'in lieu of', 'in place of', 'in spite of', 'instead of',
+  'near to', 'next to', 'on behalf of', 'on top of', 'out of', 'outside of', 'owing to',
+  'prior to', 'pursuant to', 'regardless of', 'subsequent to', 'thanks to', 'up to',
+  'with regard to', 'a la', 'as far as', 'as well as', 'by means of', 'in accordance with',
+  'in case of', 'in favour of', 'in favor of', 'in light of', 'in terms of', 'on account of',
+  'vis-a-vis', 'with respect to', 'along with', 'away from', 'but for', 'contrary to',
+  'depending on', 'further to', 'irrespective of', 'other than', 'preparatory to',
+  'together with', 'up against', 'with reference to'
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   // Preloader Animation
   const preloader = document.getElementById('preloader');
@@ -98,11 +131,11 @@ function initEventTracking() {
 
   sections.forEach(section => observer.observe(section));
 
-  // Specific Elements
-  trackSpecificElements();
+  // Track All Interactive Elements
+  trackAllElements();
 }
 
-function trackSpecificElements() {
+function trackAllElements() {
   // Profile Picture
   const profilePic = document.querySelector('.profile-pic');
   if (profilePic) trackElementView(profilePic, 'image', 'Profile Picture');
@@ -119,12 +152,27 @@ function trackSpecificElements() {
 
   // Education Items
   document.querySelectorAll('#education .timeline-item').forEach((item, index) => {
-      trackElementView(item, 'text', `Education Item ${index + 1}`);
+      trackElementView(item, 'education-item', `Education Item ${index + 1}`);
   });
 
   // Skills
   document.querySelectorAll('#skills .skill-card').forEach((card, index) => {
-      trackElementView(card, 'text', `Skill Card ${index + 1}`);
+      trackElementView(card, 'skill-card', `Skill Card ${index + 1}`);
+  });
+
+  // Navigation Links
+  document.querySelectorAll('.nav-link').forEach((link, index) => {
+      trackElementView(link, 'hyperlink', `Nav Link ${index + 1}`);
+  });
+
+  // Contact Cards
+  document.querySelectorAll('.contact-card').forEach((card, index) => {
+      trackElementView(card, 'contact-card', `Contact Card ${index + 1}`);
+  });
+
+  // Social Links
+  document.querySelectorAll('.social-icon').forEach((link, index) => {
+      trackElementView(link, 'hyperlink', `Social Link ${index + 1}`);
   });
 
   // CV Download
@@ -133,6 +181,18 @@ function trackSpecificElements() {
       cvLink.addEventListener('click', () => {
           logEvent('click', 'hyperlink', 'CV Download');
       });
+  }
+
+  // Text Analysis Button
+  const analyzeBtn = document.getElementById('analyze-text');
+  if (analyzeBtn) {
+      trackElementView(analyzeBtn, 'button', 'Analyze Text Button');
+  }
+
+  // Text Input
+  const textInput = document.getElementById('text-input');
+  if (textInput) {
+      trackElementView(textInput, 'text-area', 'Text Analysis Input');
   }
 }
 
@@ -160,9 +220,10 @@ function getElementType(element) {
       return 'input-field';
   }
   if (tagName === 'textarea') return 'text-area';
-  if (element.closest('p')) return 'text';
-  if (element.classList.contains('skill-card')) return 'skill-card';
+  if (element.closest('.skill-card')) return 'skill-card';
   if (element.closest('.timeline-item')) return 'education-item';
+  if (element.closest('.contact-card')) return 'contact-card';
+  if (element.closest('p') && element.tagName !== 'A') return 'text';
   return tagName;
 }
 
@@ -171,6 +232,7 @@ function getElementContent(element) {
   if (!content && element.tagName.toLowerCase() === 'img') content = element.alt;
   if (!content && element.tagName.toLowerCase() === 'input') content = element.placeholder || element.id;
   if (!content && element.tagName.toLowerCase() === 'a') content = element.href;
+  if (!content && element.tagName.toLowerCase() === 'textarea') content = element.placeholder || element.id;
   if (!content) content = `${getElementType(element)} element`;
   return content.length > 50 ? content.substring(0, 47) + '...' : content;
 }
@@ -195,7 +257,7 @@ function initTextAnalysis() {
           return;
       }
 
-      // Basic Stats
+      // Calculate Stats
       const stats = calculateTextStats(text);
       const pronounCounts = countPronouns(text);
       const prepositionCounts = countPrepositions(text);
@@ -230,7 +292,6 @@ function calculateTextStats(text) {
 }
 
 function countPronouns(text) {
-  const pronouns = ['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them'];
   const words = text.toLowerCase().split(/\s+/).filter(word => word);
   const counts = {};
 
@@ -242,7 +303,6 @@ function countPronouns(text) {
 }
 
 function countPrepositions(text) {
-  const prepositions = ['of', 'in', 'to', 'for', 'with', 'on', 'at', 'from', 'by', 'about', 'as', 'into', 'like'];
   const words = text.toLowerCase().split(/\s+/).filter(word => word);
   const counts = {};
 

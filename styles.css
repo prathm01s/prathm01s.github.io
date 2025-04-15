@@ -4,6 +4,7 @@
     --accent-gradient: linear-gradient(45deg, #4b6cb7, #2bc0e4);
     --text-color: #ffffff;
     --card-bg: rgba(27, 38, 59, 0.8);
+    --result-bg: rgba(43, 192, 228, 0.2);
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     background-color: var(--primary-color);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
@@ -39,6 +41,7 @@ img {
 
 .loading-container {
     perspective: 1000px;
+    text-align: center;
 }
 
 .neon-grid {
@@ -52,10 +55,11 @@ img {
 }
 
 .holo-cube {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     transform-style: preserve-3d;
     animation: cubeRotate 8s infinite linear;
+    margin: 0 auto 20px;
 }
 
 .holo-cube div {
@@ -64,30 +68,33 @@ img {
     height: 100%;
     background: rgba(43,192,228,0.1);
     border: 2px solid #2bc0e4;
+    box-shadow: 0 0 15px rgba(43,192,228,0.5);
 }
 
-.holo-cube .front { transform: translateZ(50px); }
-.holo-cube .back { transform: translateZ(-50px); }
-.holo-cube .right { transform: rotateY(90deg) translateZ(50px); }
-.holo-cube .left { transform: rotateY(-90deg) translateZ(50px); }
-.holo-cube .top { transform: rotateX(90deg) translateZ(50px); }
-.holo-cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+.holo-cube .front { transform: translateZ(60px); }
+.holo-cube .back { transform: translateZ(-60px); }
+.holo-cube .right { transform: rotateY(90deg) translateZ(60px); }
+.holo-cube .left { transform: rotateY(-90deg) translateZ(60px); }
+.holo-cube .top { transform: rotateX(90deg) translateZ(60px); }
+.holo-cube .bottom { transform: rotateX(-90deg) translateZ(60px); }
 
 .neon-core {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     background: radial-gradient(circle, #2bc0e4 0%, #4b6cb7 100%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: corePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 20px #2bc0e4;
 }
 
 .digital-loading {
     font-family: 'Courier New', monospace;
-    text-shadow: 0 0 10px #2bc0e4;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #2bc0e4, 0 0 20px #2bc0e4;
 }
 
 .digital-loading span {
@@ -99,12 +106,17 @@ img {
 /* Navigation */
 .navbar {
     background: rgba(26, 26, 46, 0.9);
+    backdrop-filter: blur(10px);
 }
 
 .navbar-brand .logo-text {
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
 }
 
 /* Sections */
@@ -126,11 +138,13 @@ img {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    background: radial-gradient(circle at center, rgba(43,192,228,0.1), transparent);
 }
 
 .hero-text h1 {
     font-size: 4rem;
     margin-bottom: 20px;
+    text-shadow: 0 0 10px #2bc0e4;
 }
 
 .typewriter p {
@@ -144,6 +158,7 @@ img {
 .profile-frame {
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 0 20px rgba(43,192,228,0.3);
 }
 
 /* About Section */
@@ -155,11 +170,14 @@ img {
 .stack-img {
     position: absolute;
     border-radius: 10px;
+    transition: transform 0.3s;
 }
 
 .img-back { width: 60%; left: 0; bottom: 0; }
 .img-middle { width: 60%; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .img-front { width: 60%; right: 0; top: 0; }
+
+.stack-img:hover { transform: scale(1.05); }
 
 /* Education Section */
 .timeline-container {
@@ -188,6 +206,7 @@ img {
     border-radius: 10px;
     width: 45%;
     margin-left: 55%;
+    transition: transform 0.3s;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
@@ -195,11 +214,20 @@ img {
     margin-right: 55%;
 }
 
+.timeline-content:hover {
+    transform: translateY(-5px);
+}
+
 /* Skills Section */
 .skill-card {
     background: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
 }
 
 .skill-bar {
@@ -211,11 +239,13 @@ img {
 .skill-progress {
     height: 100%;
     background: var(--accent-gradient);
+    border-radius: 3px;
 }
 
 /* Gallery Section */
 .gallery-item {
     position: relative;
+    overflow: hidden;
 }
 
 .gallery-overlay {
@@ -237,12 +267,52 @@ img {
 #text-input {
     background: var(--card-bg);
     color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    resize: vertical;
+    font-family: 'Courier New', monospace;
+}
+
+#text-input:focus {
+    border-color: #2bc0e4;
+    box-shadow: 0 0 10px rgba(43,192,228,0.5);
+}
+
+#analyze-text {
+    background: var(--accent-gradient);
+    border: none;
+    transition: transform 0.2s;
+}
+
+#analyze-text:hover {
+    transform: scale(1.05);
 }
 
 #analysis-results {
     background: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid var(--accent-color);
+}
+
+#analysis-results h3 {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px;
+}
+
+#analysis-results p, #analysis-results pre {
+    background: var(--result-bg);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+}
+
+#analysis-results pre {
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 /* Contact Section */
@@ -251,6 +321,11 @@ img {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
 }
 
 /* Footer */
@@ -273,6 +348,11 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: rotate(360deg);
 }
 
 /* Animations */
@@ -311,4 +391,10 @@ footer {
 @media (max-width: 768px) {
     .hero-text h1 { font-size: 3rem; }
     .section-title { font-size: 2rem; }
+    .holo-cube { width: 80px; height: 80px; }
+    .holo-cube .front, .holo-cube .back, .holo-cube .right, .holo-cube .left, .holo-cube .top, .holo-cube .bottom {
+        transform: translateZ(40px) or rotateY(90deg) translateZ(40px) or rotateY(-90deg) translateZ(40px) or rotateX(90deg) translateZ(40px) or rotateX(-90deg) translateZ(40px);
+    }
+    .neon-core { width: 50px; height: 50px; }
+    .digital-loading { font-size: 1.2rem; }
 }
